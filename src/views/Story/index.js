@@ -108,7 +108,7 @@ function Essay({ navigation }) {
                 }
             </View>
 
-            <ResultModal showModal={showModal} setShowModal={setShowModal} result={result} />
+            <ResultModal showModal={showModal} setShowModal={setShowModal} result={result} topic={topic} />
         </ImageBackground>
     )
 }

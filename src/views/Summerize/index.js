@@ -1,8 +1,34 @@
 import React, { useEffect } from 'react';
 import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import DocumentPicker from 'react-native-document-picker';
+var RNFS = require('react-native-fs');
 
 function Essay({ navigation }) {
+
+    const onSelect = () => {
+        DocumentPicker.pickSingle({
+            type: [DocumentPicker.types.doc, DocumentPicker.types.docx]
+        })
+            .then((response) => {
+                console.log(response)
+                RNFS.readFile(response.uri, 'base64').then((
+                    content
+                ) => {
+                    console.log("Content: ", content)
+                })
+                    .catch((error) => {
+                        console.warn("Error: ", error)
+                    })
+
+            })
+            .catch((error) => {
+                console.warn("Error: ", error)
+            })
+    }
+
+
+
     return (
         <ImageBackground style={styles.container} source={require('../../assets/landing.png')}>
             <View style={{ padding: RFValue(10), paddingVertical: RFValue(15), flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: RFValue(75) }}>
@@ -26,7 +52,9 @@ function Essay({ navigation }) {
 
                 <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', padding: RFValue(5), backgroundColor: '#79839B' }}>
                     <Image source={require('../../assets/file.png')} style={{ width: RFValue(33), height: RFValue(33) }} />
-                    <View style={{ justifyContent: 'center', padding: RFValue(5), flex: 1 }}>
+                    <TouchableOpacity style={{ justifyContent: 'center', padding: RFValue(5), flex: 1 }}
+                        onPress={onSelect}
+                    >
                         <Text style={{
                             fontSize: RFValue(14),
                             fontWeight: 'bold',
@@ -34,7 +62,7 @@ function Essay({ navigation }) {
                             marginBottom: RFValue(5)
                         }}>Upload file</Text>
                         <Text style={{ fontSize: RFValue(10), color: '#C5C5C5' }}>Max size 1 MB (.txt or .doc)</Text>
-                    </View>
+                    </TouchableOpacity>
 
                     <TouchableOpacity style={{ backgroundColor: '#79839B', justifyContent: 'center', alignItems: 'center', width: RFValue(40), height: (40), elevation: RFValue(10) }}>
                         <Text>+</Text>

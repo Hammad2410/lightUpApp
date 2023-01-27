@@ -107,7 +107,7 @@ function Essay({ navigation }) {
                         </TouchableOpacity>}
             </View>
 
-            <ResultModal showModal={showModal} setShowModal={setShowModal} result={result} />
+            <ResultModal showModal={showModal} setShowModal={setShowModal} result={result} topic={topic} />
 
             {/* <Modal
                 visible={showModal}

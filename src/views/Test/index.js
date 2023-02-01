@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput, ActivityIndicator } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput, ActivityIndicator, FlatList, Modal } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { postCall } from '../../utils/apiCall';
 import ResultModal from '../../components/resultModal';
@@ -7,7 +7,12 @@ import ResultModal from '../../components/resultModal';
 function Essay({ navigation }) {
 
     const [topic, setTopic] = useState('')
-    const [words, setWords] = useState(50)
+    const [mcqs, setMcqs] = useState(0)
+    const [short, setShort] = useState(0)
+    const [long, setLong] = useState(0)
+
+    // const [words, setWords] = useState(50)
+    const [level, setLevel] = useState('');
 
     const [loading, setLoading] = useState(false)
 
@@ -15,12 +20,18 @@ function Essay({ navigation }) {
 
     const [result, setResult] = useState('');
 
+    const [showLevelModal, setShowLevelModal] = useState(false)
+
+
     const onSubmit = () => {
         setLoading(true)
 
         const params = {
             topic: topic,
-            words: words
+            level: level,
+            mcqs: mcqs,
+            short: short,
+            long: long
         }
 
         const cbSuccess = (data) => {
@@ -34,12 +45,12 @@ function Essay({ navigation }) {
             alert(error)
         }
 
-        if (+words < 1000) {
-            postCall('/chat/createTest', params, cbSuccess, cbFailure)
-        }
-        else {
-            alert("Number of words should be less then 1000")
-        }
+        // if (+words < 1000) {
+        postCall('/chat/createTest', params, cbSuccess, cbFailure)
+        // }
+        // else {
+        //     alert("Number of words should be less then 1000")
+        // }
 
     }
 
@@ -107,7 +118,7 @@ function Essay({ navigation }) {
                         <TextInput
                             style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
                             placeholderTextColor={'#FFF'}
-                            onChangeText={(text) => setWords(text)}
+                            onChangeText={(text) => setMcqs(text)}
                             keyboardType={'numeric'}
                             placeholder={"Enter Number"} />
                     </View>
@@ -116,6 +127,8 @@ function Essay({ navigation }) {
                         <TextInput
                             style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
                             placeholderTextColor={'#FFF'}
+                            onChangeText={(text) => setShort(text)}
+                            keyboardType={'numeric'}
                             placeholder={"Enter Number"} />
                     </View>
                     <View style={{ flex: 1, marginLeft: RFValue(5) }}>
@@ -123,15 +136,21 @@ function Essay({ navigation }) {
                         <TextInput
                             style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
                             placeholderTextColor={'#FFF'}
+                            onChangeText={(text) => setLong(text)}
+                            keyboardType={'numeric'}
                             placeholder={"Enter Number"} />
                     </View>
                 </View>
 
+                <TouchableOpacity onPress={() => setShowLevelModal(true)}>
+                    <TextInput
+                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
+                        placeholderTextColor={'#FFF'}
+                        editable={false}
+                        value={level}
+                        placeholder={"Academic Level"} />
+                </TouchableOpacity>
 
-                <TextInput
-                    style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
-                    placeholderTextColor={'#FFF'}
-                    placeholder={"Academic Level"} />
                 {
                     loading ?
                         <ActivityIndicator size={'large'} color={'#628BEC'} />
@@ -150,6 +169,35 @@ function Essay({ navigation }) {
 
             </View>
             <ResultModal showModal={showModal} setShowModal={setShowModal} result={result} topic={topic} />
+
+            <Modal
+                visible={showLevelModal}
+                onRequestClose={() => setShowLevelModal(false)}
+                transparent
+            >
+                <View disabled style={styles.modal} onPress={() => setShowLevelModal(false)}>
+                    <View style={styles.modalContainer}>
+                        <Text style={styles.heading}>Select Level</Text>
+                        {/* <TextInput style={[styles.item, { width: '100%', height: RFValue(45), fontSize: RFValue(14) }]} placeholder={'Search'} /> */}
+                        <FlatList
+                            keyboardShouldPersistTaps={'always'}
+                            style={styles.modalList}
+                            keyExtractor={(item, index) => index.toString()}
+                            data={["Masters", "Graduate", "Grade 11 & 12", "Grade 9 & 10", "Grade 8", "Grade 7", "Grade 6", "Grade 5", "Grade 4", "Grade 3", "Grade 2", "Grade 1"]}
+                            renderItem={({ item, index }) => (
+                                <TouchableOpacity style={styles.modalItem} onPress={() => {
+                                    setLevel(item)
+                                    setShowLevelModal(false)
+                                }}>
+                                    <Text style={{ flex: 1 }}>{item}</Text>
+                                </TouchableOpacity>)
+                            }
+                        />
+                    </View>
+                </View>
+
+            </Modal>
+
         </ImageBackground>
     )
 }
@@ -171,7 +219,31 @@ const styles = StyleSheet.create({
         color: '#000',
         textAlign: 'center',
         marginBottom: RFValue(5)
-    }
+    },
+    modal: {
+        flex: 1,
+        justifyContent: 'flex-end'
+    },
+    modalContainer: {
+        height: '75%',
+        backgroundColor: '#79839B',
+        alignItems: 'center',
+        width: '100%',
+        padding: 10,
+        borderTopLeftRadius: RFValue(10),
+        borderTopRightRadius: RFValue(10)
+    },
+    modalList: {
+        width: '100%',
+        marginTop: 10
+    },
+    modalItem: {
+        flexDirection: 'row',
+        padding: RFValue(10),
+        borderColor: "#000",
+        borderBottomWidth: 0.5,
+        marginVertical: 5
+    },
 
 })
 

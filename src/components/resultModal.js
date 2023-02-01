@@ -10,7 +10,7 @@ function resultModal({ showModal, setShowModal, result, topic }) {
         onRequestClose={() => setShowModal(false)}
     // transparent
     >
-        <View style={{ flex: 1, backgroundColor: '#fff', padding: RFValue(25), alignItems: 'center' }}>
+        <View style={{ flex: 1, backgroundColor: '#79839B', padding: RFValue(25), alignItems: 'center' }}>
 
 
             <View style={{
@@ -42,22 +42,22 @@ function resultModal({ showModal, setShowModal, result, topic }) {
 
 
             <TouchableOpacity style={{ position: 'absolute', top: RFValue(10), left: RFValue(10), flexDirection: 'row' }} onPress={() => setShowModal(false)}>
-                <Icon name="close" size={18} color="#000" />
-                <Text style={{ color: '#000', marginLeft: RFValue(5) }}>close</Text>
+                <Icon name="close" size={18} color="#FFF" />
+                <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>close</Text>
             </TouchableOpacity>
 
             <View style={{ position: 'absolute', bottom: RFValue(10), width: '100%', padding: RFValue(10), justifyContent: 'space-around', flexDirection: 'row' }}>
                 <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setShowModal(false)}>
-                    <Icon name="copy" size={18} color="#000" />
-                    <Text style={{ color: '#000', marginLeft: RFValue(5) }}>Copy</Text>
+                    <Icon name="copy" size={18} color="#FFF" />
+                    <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>Copy</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setShowModal(false)}>
-                    <Icon name="save" size={18} color="#000" />
-                    <Text style={{ color: '#000', marginLeft: RFValue(5) }}>Save</Text>
+                    <Icon name="save" size={18} color="#FFF" />
+                    <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>Save</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setShowModal(false)}>
-                    <Icon name="share" size={18} color="#000" />
-                    <Text style={{ color: '#000', marginLeft: RFValue(5) }}>share</Text>
+                    <Icon name="share" size={18} color="#FFF" />
+                    <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>share</Text>
                 </TouchableOpacity>
             </View >
 

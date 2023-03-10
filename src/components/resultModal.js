@@ -29,7 +29,8 @@ function resultModal({ showModal, setShowModal, result, topic }) {
                 shadowRadius: 6.27,
                 elevation: 10,
                 padding: RFValue(5),
-                height: Dimensions.get("window").height - RFValue(150)
+                height: Dimensions.get("window").height - RFValue(150),
+                width: '100%'
             }}>
                 <ScrollView
                 >

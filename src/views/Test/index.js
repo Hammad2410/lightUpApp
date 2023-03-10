@@ -3,6 +3,9 @@ import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextI
 import { RFValue } from 'react-native-responsive-fontsize';
 import { postCall } from '../../utils/apiCall';
 import ResultModal from '../../components/resultModal';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { ScrollView } from 'react-native-gesture-handler';
 
 function Essay({ navigation }) {
 
@@ -55,33 +58,32 @@ function Essay({ navigation }) {
     }
 
     return (
+
         <ImageBackground style={styles.container} source={require('../../assets/landing.png')}>
-            <View style={{ padding: RFValue(10), paddingVertical: RFValue(15), flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: RFValue(75) }}>
-                <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold' }}>LightUp!</Text>
-                <Text style={{ width: RFValue(150), fontSize: RFValue(10), color: '#000' }}>Assist Teachers and Students
-                    in creating educational
-                    contents by AI!</Text>
-            </View>
-            <TouchableOpacity style={{ flexDirection: 'row', width: '100%', alignItems: 'center', padding: RFValue(5) }} onPress={() => navigation.navigate('essay')}>
-                <Image source={require('../../assets/icn_task.png')} style={{ width: RFValue(33), height: RFValue(33) }} />
-                <View style={{ justifyContent: 'center', padding: RFValue(5) }}>
-                    <Text style={{
-                        fontSize: RFValue(20),
-                        fontWeight: 'bold',
-                        color: '#FFF',
-                        marginBottom: RFValue(5)
-                    }}>Create Test</Text>
+            <ScrollView>
+                <TouchableOpacity style={{ position: 'absolute', top: RFValue(10), left: RFValue(10), flexDirection: 'row' }} onPress={() => navigation.goBack()}>
+                    <Icon name="chevron-left" size={18} color="#FFF" />
+                    <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>Back</Text>
+                </TouchableOpacity>
+                <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
+                    <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', fontFamily: 'times new roman' }}>Lightup.ai</Text>
+                    <Text style={{ color: '#848484', fontSize: RFValue(10), marginVertical: RFValue(25), }}>Write amazing essays, stories, letters,
+                        applications, emails, speeches, articles, blogposts
+                        and many more in different languages, academic levels
+                        and tones within seconds!</Text>
                 </View>
-            </TouchableOpacity>
-            <View style={{ padding: RFValue(5) }}>
+                <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 0, y: 0 }} colors={['#5C4DB7', '#4C3F97', '#2E275C']} style={{ height: RFValue(40), padding: RFValue(5), marginVertical: RFValue(5), justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ fontSize: RFValue(14), flex: 0.75 }}>Make Question Paper</Text>
+                </LinearGradient>
+                <View style={{ padding: RFValue(5) }}>
 
-                <TextInput
-                    style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
-                    placeholderTextColor={'#FFF'}
-                    onChangeText={(text) => setTopic(text)}
-                    placeholder={"Enter Topic"} />
+                    <TextInput
+                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
+                        placeholderTextColor={'#B5B5B5'}
+                        onChangeText={(text) => setTopic(text)}
+                        placeholder={"Enter Topic"} />
 
-                <Text
+                    {/* <Text
                     style={{ color: '#FFF', fontSize: RFValue(14), width: '100%', marginVertical: RFValue(5), textAlign: 'center' }}
                 >
                     OR
@@ -102,102 +104,102 @@ function Essay({ navigation }) {
                     <TouchableOpacity style={{ backgroundColor: '#79839B', justifyContent: 'center', alignItems: 'center', width: RFValue(40), height: (40), elevation: RFValue(10) }}>
                         <Text>+</Text>
                     </TouchableOpacity>
-                </View>
-                {/* <TextInput
+                </View> */}
+                    {/* <TextInput
                     style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
-                    placeholderTextColor={'#FFF'}
+                    placeholderTextColor={'#B5B5B5'}
                     placeholder={"Enter Topic"} />
                 <TextInput
                     style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
-                    placeholderTextColor={'#FFF'}
+                    placeholderTextColor={'#B5B5B5'}
                     placeholder={"Academic Level"} /> */}
 
-                <View style={{ width: '100%', marginVertical: RFValue(5), flexDirection: 'row' }}>
-                    <View style={{ flex: 1, marginRight: RFValue(5) }}>
-                        <Text style={{ fontSize: RFValue(8), color: '#FFF' }}>MCQs</Text>
-                        <TextInput
-                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
-                            placeholderTextColor={'#FFF'}
-                            onChangeText={(text) => setMcqs(text)}
-                            keyboardType={'numeric'}
-                            placeholder={"Enter Number"} />
+                    <View style={{ width: '100%', marginVertical: RFValue(5), flexDirection: 'row' }}>
+                        <View style={{ flex: 1, marginRight: RFValue(5), alignItems: 'center' }}>
+                            <Text style={{ fontSize: RFValue(8), color: '#FFF' }}>MCQs</Text>
+                            <TextInput
+                                style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(5) }}
+                                placeholderTextColor={'#B5B5B5'}
+                                onChangeText={(text) => setMcqs(text)}
+                                keyboardType={'numeric'}
+                                placeholder={"Enter Number"} />
+                        </View>
+                        <View style={{ flex: 1, marginHorizontal: RFValue(5), alignItems: 'center' }}>
+                            <Text style={{ fontSize: RFValue(8), color: '#FFF' }}>Short Questions</Text>
+                            <TextInput
+                                style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(5) }}
+                                placeholderTextColor={'#B5B5B5'}
+                                onChangeText={(text) => setShort(text)}
+                                keyboardType={'numeric'}
+                                placeholder={"Enter Number"} />
+                        </View>
+                        <View style={{ flex: 1, marginLeft: RFValue(5), alignItems: 'center' }}>
+                            <Text style={{ fontSize: RFValue(8), color: '#FFF' }}>Long Questions</Text>
+                            <TextInput
+                                style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(5) }}
+                                placeholderTextColor={'#B5B5B5'}
+                                onChangeText={(text) => setLong(text)}
+                                keyboardType={'numeric'}
+                                placeholder={"Enter Number"} />
+                        </View>
                     </View>
-                    <View style={{ flex: 1, marginHorizontal: RFValue(5) }}>
-                        <Text style={{ fontSize: RFValue(8), color: '#FFF' }}>Short Questions</Text>
-                        <TextInput
-                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
-                            placeholderTextColor={'#FFF'}
-                            onChangeText={(text) => setShort(text)}
-                            keyboardType={'numeric'}
-                            placeholder={"Enter Number"} />
-                    </View>
-                    <View style={{ flex: 1, marginLeft: RFValue(5) }}>
-                        <Text style={{ fontSize: RFValue(8), color: '#FFF' }}>Long Questions</Text>
-                        <TextInput
-                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
-                            placeholderTextColor={'#FFF'}
-                            onChangeText={(text) => setLong(text)}
-                            keyboardType={'numeric'}
-                            placeholder={"Enter Number"} />
-                    </View>
-                </View>
 
-                <TouchableOpacity onPress={() => setShowLevelModal(true)}>
-                    <TextInput
-                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5) }}
-                        placeholderTextColor={'#FFF'}
-                        editable={false}
-                        value={level}
-                        placeholder={"Academic Level"} />
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setShowLevelModal(true)}>
+                        <TextInput
+                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
+                            placeholderTextColor={'#B5B5B5'}
+                            editable={false}
+                            value={level}
+                            placeholder={"Academic Level"} />
+                    </TouchableOpacity>
 
-                {
-                    loading ?
-                        <ActivityIndicator size={'large'} color={'#628BEC'} />
-                        :
-                        <TouchableOpacity style={{ width: '100%', height: RFValue(40), justifyContent: 'center', alignItems: 'center', backgroundColor: '#628BEC', marginVertical: RFValue(20), borderRadius: RFValue(5) }}
-                            onPress={onSubmit}
-                        >
-                            <Text
-                                style={{ color: '#FFF', fontSize: RFValue(14) }}
+                    {
+                        loading ?
+                            <ActivityIndicator size={'large'} color={'#628BEC'} />
+                            :
+                            <TouchableOpacity style={{ width: '50%', height: RFValue(40), justifyContent: 'center', alignItems: 'center', backgroundColor: '#628BEC', marginVertical: RFValue(20), borderRadius: RFValue(5), alignSelf: 'center' }}
+                                onPress={onSubmit}
                             >
-                                Submit
-                            </Text>
-                        </TouchableOpacity>
-                }
+                                <Text
+                                    style={{ color: '#FFF', fontSize: RFValue(14) }}
+                                >
+                                    Submit
+                                </Text>
+                            </TouchableOpacity>
+                    }
 
 
-            </View>
-            <ResultModal showModal={showModal} setShowModal={setShowModal} result={result} topic={topic} />
-
-            <Modal
-                visible={showLevelModal}
-                onRequestClose={() => setShowLevelModal(false)}
-                transparent
-            >
-                <View disabled style={styles.modal} onPress={() => setShowLevelModal(false)}>
-                    <View style={styles.modalContainer}>
-                        <Text style={styles.heading}>Select Level</Text>
-                        {/* <TextInput style={[styles.item, { width: '100%', height: RFValue(45), fontSize: RFValue(14) }]} placeholder={'Search'} /> */}
-                        <FlatList
-                            keyboardShouldPersistTaps={'always'}
-                            style={styles.modalList}
-                            keyExtractor={(item, index) => index.toString()}
-                            data={["Masters", "Graduate", "Grade 11 & 12", "Grade 9 & 10", "Grade 8", "Grade 7", "Grade 6", "Grade 5", "Grade 4", "Grade 3", "Grade 2", "Grade 1"]}
-                            renderItem={({ item, index }) => (
-                                <TouchableOpacity style={styles.modalItem} onPress={() => {
-                                    setLevel(item)
-                                    setShowLevelModal(false)
-                                }}>
-                                    <Text style={{ flex: 1 }}>{item}</Text>
-                                </TouchableOpacity>)
-                            }
-                        />
-                    </View>
                 </View>
+                <ResultModal showModal={showModal} setShowModal={setShowModal} result={result} topic={topic} />
 
-            </Modal>
+                <Modal
+                    visible={showLevelModal}
+                    onRequestClose={() => setShowLevelModal(false)}
+                    transparent
+                >
+                    <View disabled style={styles.modal} onPress={() => setShowLevelModal(false)}>
+                        <View style={styles.modalContainer}>
+                            <Text style={styles.heading}>Select Level</Text>
+                            {/* <TextInput style={[styles.item, { width: '100%', height: RFValue(45), fontSize: RFValue(14) }]} placeholder={'Search'} /> */}
+                            <FlatList
+                                keyboardShouldPersistTaps={'always'}
+                                style={styles.modalList}
+                                keyExtractor={(item, index) => index.toString()}
+                                data={["Masters", "Graduate", "Grade 11 & 12", "Grade 9 & 10", "Grade 8", "Grade 7", "Grade 6", "Grade 5", "Grade 4", "Grade 3", "Grade 2", "Grade 1"]}
+                                renderItem={({ item, index }) => (
+                                    <TouchableOpacity style={styles.modalItem} onPress={() => {
+                                        setLevel(item)
+                                        setShowLevelModal(false)
+                                    }}>
+                                        <Text style={{ flex: 1 }}>{item}</Text>
+                                    </TouchableOpacity>)
+                                }
+                            />
+                        </View>
+                    </View>
 
+                </Modal>
+            </ScrollView>
         </ImageBackground>
     )
 }

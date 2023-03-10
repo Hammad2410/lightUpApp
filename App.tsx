@@ -24,8 +24,11 @@ import {
 import 'react-native-gesture-handler';
 
 import Navigator from './src/navigator';
+import { Provider } from 'react-redux';
+import createStore from './src/Redux/createStore';
 
 
+const store = createStore()
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -37,16 +40,15 @@ function App(): JSX.Element {
 
 
   return (
-    <SafeAreaView style={[backgroundStyle, { flex: 1 }]}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-
-      <Navigator />
-
-
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={[backgroundStyle, { flex: 1 }]}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <Navigator />
+      </SafeAreaView>
+    </Provider>
   );
 }
 

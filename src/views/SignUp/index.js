@@ -16,7 +16,7 @@ function SignUp({ navigation }) {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('+92')
     const [loading, setLoading] = useState(false)
 
     const phoneRef = useRef(undefined);
@@ -29,14 +29,16 @@ function SignUp({ navigation }) {
                 email: email,
                 password: md5(password),
                 first_name: firstName,
-                last_name: lastName
+                last_name: lastName,
+                phone: phoneNumber
             }
 
             const cbSuccess = (data) => {
                 setLoading(false)
                 console.log('Response: ', data)
 
-                navigation.navigate('login')
+                navigation.navigate('verifyNumber', { email: email })
+
             }
 
             const cbFailure = (error) => {
@@ -57,7 +59,8 @@ function SignUp({ navigation }) {
             <ScrollView>
                 <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
                     <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', fontFamily: 'times new roman' }}>Lightup.ai</Text>
-                    <Text style={{ color: '#848484', fontSize: RFValue(10), marginVertical: RFValue(25), }}>Write amazing essays, stories, letters,
+                    <Text style={{ fontSize: RFValue(10), color: '#A16B5D', marginHorizontal: RFValue(20) }}>Unlock your creative potential</Text>
+                    <Text style={{ color: '#A16B5D', fontSize: RFValue(12), marginVertical: RFValue(25), textAlign: 'center' }}>Write amazing essays, stories, letters,
                         applications, emails, speeches, articles, blogposts
                         and many more in different languages, academic levels
                         and tones within seconds!</Text>
@@ -78,7 +81,7 @@ function SignUp({ navigation }) {
                         value={phoneNumber}
                         onChangePhoneNumber={setPhoneNumber}
                     />
-                    <TextInput
+                    {/* <TextInput
                         style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
                         placeholderTextColor={'#B5B5B5'}
                         onChangeText={setFirstName}
@@ -88,7 +91,7 @@ function SignUp({ navigation }) {
                         style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
                         placeholderTextColor={'#B5B5B5'}
                         onChangeText={setLastName}
-                        placeholder={"Last Name"} />
+                        placeholder={"Last Name"} /> */}
 
                     <View style={{ width: '100%', justifyContent: 'space-between', flexDirection: 'row' }}>
                         <TextInput
@@ -132,8 +135,8 @@ function SignUp({ navigation }) {
                             <ActivityIndicator size={'large'} color={'#628BEC'} />
                             :
                             <TouchableOpacity style={{ width: '50%', height: RFValue(40), justifyContent: 'center', alignItems: 'center', backgroundColor: '#628BEC', marginVertical: RFValue(20), borderRadius: RFValue(5), alignSelf: 'center' }}
-                                onPress={() => navigation.navigate('verifyNumber')}
-                            // onPress={onSubmit}
+                                // onPress={() => navigation.navigate('verifyNumber')}
+                                onPress={onSubmit}
                             >
                                 <Text
                                     style={{ color: '#FFF', fontSize: RFValue(14) }}

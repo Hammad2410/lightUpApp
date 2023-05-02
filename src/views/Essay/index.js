@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 function Essay({ navigation }) {
 
     const [topic, setTopic] = useState('');
-    const [words, setWords] = useState(50);
+    const [words, setWords] = useState('');
     const [option, setOption] = useState('');
     const [level, setLevel] = useState('');
 
@@ -74,8 +74,9 @@ function Essay({ navigation }) {
                         and many more in different languages, academic levels
                         and tones within seconds!</Text>
                 </View>
-                <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 0, y: 0 }} colors={['#5C4DB7', '#4C3F97', '#2E275C']} style={{ height: RFValue(40), padding: RFValue(5), marginVertical: RFValue(5), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: RFValue(14), flex: 0.75 }}>Write Essay</Text>
+                <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 0, y: 0 }} colors={['#5C4DB7', '#4C3F97', '#2E275C']} style={{ height: RFValue(45), padding: RFValue(5), marginVertical: RFValue(5), justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ fontSize: RFValue(14), flex: 0.75, fontFamily: "Roboto-Regular" }}>Lets Write Essay</Text>
+                    <Text style={{ fontSize: RFValue(8), flex: 0.75, fontFamily: 'Roboto-Regular' }}>Save hours writing your essay, just give a topic and lightup will write it for you !</Text>
                 </LinearGradient>
                 {/* <TouchableOpacity style={{ flexDirection: 'row', width: '100%', alignItems: 'center', padding: RFValue(5) }} onPress={() => navigation.navigate('essay')}>
                     <Image source={require('../../assets/icn_note.png')} style={{ width: RFValue(33), height: RFValue(33) }} />

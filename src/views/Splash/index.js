@@ -3,6 +3,7 @@ import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image } from
 import { ScrollView } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import LinearGradient from 'react-native-linear-gradient';
+import TypeWriter from 'react-native-typewriter'
 
 function Splash({ navigation }) {
 
@@ -11,10 +12,13 @@ function Splash({ navigation }) {
             <View style={styles.body}>
                 <View style={{ padding: RFValue(10), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
                     <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', textAlign: 'center', fontFamily: 'times new roman' }}>Lightup.ai</Text>
-                    <Text style={{ color: '#848484', fontSize: RFValue(10), marginVertical: RFValue(50), textAlign: 'center' }}>Write amazing essays, stories, letters,
-                        applications, emails, speeches, articles, blogposts
-                        and many more in different languages, academic levels
-                        and tones within seconds!</Text>
+                    <Text style={{ fontSize: RFValue(10), textAlign: 'center', color: '#A16B5D' }}>Unlock your creative potential</Text>
+                    <Text style={{ fontSize: RFValue(8), color: '#FFF', marginHorizontal: RFValue(30), textAlign: 'center' }}>Writing was never been easier!</Text>
+                    <Text style={{ color: '#FFF', fontSize: RFValue(15), marginVertical: RFValue(50), textAlign: 'center' }}>Write amazing
+                        <TypeWriter typing={1} fixed={true}>
+                            {" essays stories, letters,applications, emails, speeches, articles, blogposts and many more in different languages, academic levels and tones within seconds!"}
+                        </TypeWriter>
+                    </Text>
                 </View>
 
 

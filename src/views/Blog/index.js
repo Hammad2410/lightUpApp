@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 function Essay({ navigation }) {
 
     const [topic, setTopic] = useState('')
-    const [words, setWords] = useState(50)
+    const [words, setWords] = useState('')
     const [level, setLevel] = useState('');
 
     const [loading, setLoading] = useState(false)
@@ -68,7 +68,7 @@ function Essay({ navigation }) {
                         and tones within seconds!</Text>
                 </View>
                 <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 0, y: 0 }} colors={['#5C4DB7', '#4C3F97', '#2E275C']} style={{ height: RFValue(40), padding: RFValue(5), marginVertical: RFValue(5), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: RFValue(14), flex: 0.75 }}>Write Blog</Text>
+                    <Text style={{ fontSize: RFValue(14), flex: 0.75 }}>Lets Write Blog</Text>
                 </LinearGradient>
                 <View style={{ padding: RFValue(5) }}>
                     <TextInput

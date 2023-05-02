@@ -7,16 +7,10 @@ import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import { postCall } from '../../utils/apiCall';
 import md5 from 'md5'
 
-function ChangePassword({ navigation }) {
+function ChangePassword({ navigation, route }) {
 
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
-
-    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
     const [loading, setLoading] = useState(false)
 
     const onSubmit = () => {
@@ -24,10 +18,8 @@ function ChangePassword({ navigation }) {
         if (password == confirmPassword) {
             setLoading(true)
             const params = {
-                email: email,
+                email: route.params.email,
                 password: md5(password),
-                first_name: firstName,
-                last_name: lastName
             }
 
             const cbSuccess = (data) => {
@@ -42,7 +34,7 @@ function ChangePassword({ navigation }) {
                 alert(error)
             }
 
-            postCall('/auth/signUp', params, cbSuccess, cbFailure)
+            postCall('/auth/resetPassword', params, cbSuccess, cbFailure)
         }
         else {
             alert("Password does not match")
@@ -83,7 +75,8 @@ function ChangePassword({ navigation }) {
                             <ActivityIndicator size={'large'} color={'#628BEC'} />
                             :
                             <TouchableOpacity style={{ width: '50%', height: RFValue(40), justifyContent: 'center', alignItems: 'center', backgroundColor: '#628BEC', marginVertical: RFValue(20), borderRadius: RFValue(5), alignSelf: 'center' }}
-                                onPress={() => navigation.navigate('login')}
+                                onPress={() => onSubmit()}
+                            // onPress={() => navigation.navigate('login')}
                             >
                                 <Text
                                     style={{ color: '#FFF', fontSize: RFValue(14) }}

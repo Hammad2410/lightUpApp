@@ -95,8 +95,9 @@ function Essay({ navigation }) {
                         and many more in different languages, academic levels
                         and tones within seconds!</Text>
                 </View>
-                <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 0, y: 0 }} colors={['#5C4DB7', '#4C3F97', '#2E275C']} style={{ height: RFValue(40), padding: RFValue(5), marginVertical: RFValue(5), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: RFValue(14), flex: 0.75 }}>Summerize</Text>
+                <LinearGradient start={{ x: 1, y: 0 }} end={{ x: 0, y: 0 }} colors={['#5C4DB7', '#4C3F97', '#2E275C']} style={{ height: RFValue(45), padding: RFValue(5), marginVertical: RFValue(5), justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ fontSize: RFValue(14), flex: 0.75, fontFamily: 'Roboto-Regular' }}>Summerize</Text>
+                    <Text style={{ fontSize: RFValue(8), flex: 0.75, fontFamily: 'Roboto-Regular' }}>Save hours writing your essay, just give a topic and lightup will write it for you !</Text>
                 </LinearGradient>
                 <View style={{ padding: RFValue(5) }}>
 

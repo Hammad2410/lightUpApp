@@ -45,13 +45,43 @@ function Login({ navigation }) {
 
     }
 
+    const onForgetPassword = () => {
+
+        setLoading(true)
+
+        const params = {
+            email: email,
+            // password: md5(password)
+        }
+
+        const cbSuccess = (data) => {
+            setLoading(false)
+            console.log('Response: ', data)
+            // dispatch(loggedIn(data.token))
+
+            navigation.navigate('forgotPassword', { email: email })
+
+
+        }
+
+        const cbFailure = (error) => {
+            setLoading(false)
+            alert(error)
+        }
+
+        postCall('/auth/forgotPassword', params, cbSuccess, cbFailure)
+
+    }
+
     return (
 
         <ImageBackground style={styles.container} source={require('../../assets/landing.png')}>
             <ScrollView>
                 <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
                     <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', fontFamily: 'times new roman' }}>Lightup.ai</Text>
-                    <Text style={{ color: '#848484', fontSize: RFValue(10), marginVertical: RFValue(25), }}>Write amazing essays, stories, letters,
+                    <Text style={{ fontSize: RFValue(10), color: '#A16B5D', marginHorizontal: RFValue(20) }}>Unlock your creative potential</Text>
+                    <Text style={{ fontSize: RFValue(8), color: '#FFF', marginHorizontal: RFValue(30) }}>Writing was never been easier!</Text>
+                    <Text style={{ color: '#A16B5D', fontSize: RFValue(12), marginVertical: RFValue(25), textAlign: 'center' }}>Write amazing essays, stories, letters,
                         applications, emails, speeches, articles, blogposts
                         and many more in different languages, academic levels
                         and tones within seconds!</Text>
@@ -88,7 +118,7 @@ function Login({ navigation }) {
                             <Text>Remember me</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => navigation.navigate('forgotPassword')}>
+                        <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => onForgetPassword()}>
                             <Text>Forgot Password?</Text>
                         </TouchableOpacity>
                     </View>
@@ -119,7 +149,7 @@ function Login({ navigation }) {
                     </TouchableOpacity>
                 </View>
             </ScrollView>
-        </ImageBackground>
+        </ImageBackground >
 
     )
 }

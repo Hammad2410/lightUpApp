@@ -8,7 +8,7 @@ import ResultModal from '../../components/resultModal';
 function Question({ navigation }) {
 
     const [question, setQuestion] = useState('');
-    const [words, setWords] = useState(50);
+    const [words, setWords] = useState('');
     const [option, setOption] = useState('');
     const [level, setLevel] = useState('');
 

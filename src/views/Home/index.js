@@ -4,29 +4,54 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import PlanModal from '../../components/planModal';
+import { getCall } from '../../utils/apiCall';
 
 function Home({ navigation }) {
 
     const [showModal, setShowModal] = useState(false);
 
+    const [words, setWords] = useState('0');
+
+    useEffect(() => getWords(), [])
+
+    const getWords = () => {
+
+        const cbSuccess = (data) => {
+            setWords(data.words)
+        }
+
+        const cbFailure = (error) => {
+
+            alert(error)
+        }
+
+        getCall('/chat/getWords', cbSuccess, cbFailure)
+
+
+
+    }
+
     return (
         <ImageBackground style={styles.container} source={require('../../assets/landing.png')}>
             <View style={styles.body}>
-                <TouchableOpacity style={{ position: 'absolute', top: RFValue(20), left: RFValue(10), flexDirection: 'row' }} onPress={() => setShowModal(true)}>
+                <TouchableOpacity style={{ position: 'absolute', top: RFValue(20), backgroundColor: '#f0f0f0', opacity: 0.75, right: RFValue(10), flexDirection: 'row', padding: RFValue(10), borderRadius: RFValue(10) }} onPress={() => setShowModal(true)}>
                     {/* <Icon name="chevron-left" size={18} color="#FFF" /> */}
-                    <Text style={{ color: '#FFF', marginLeft: RFValue(5), fontWeight: 'bold' }}>Balance: 400</Text>
+                    <Text style={{ color: '#A16B5D', marginLeft: RFValue(5), fontWeight: 'bold' }}>Words: {words}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ position: 'absolute', top: RFValue(20), right: RFValue(10), flexDirection: 'row' }} onPress={() => navigation.goBack()}>
-                    <Text style={{ color: '#FFF', marginRight: RFValue(5), fontWeight: 'bold' }}>Log Out</Text>
-                    <Icon name="undo" size={18} color="#FFF" />
+                <TouchableOpacity style={{ position: 'absolute', top: RFValue(20), left: RFValue(10), flexDirection: 'row', backgroundColor: '#f0f0f0', opacity: 0.75, padding: RFValue(10), borderRadius: RFValue(10) }} onPress={() => navigation.goBack()}>
+                    <Text style={{ color: '#A16B5D', marginRight: RFValue(5), fontWeight: 'bold' }}>Log Out</Text>
+                    <Icon name="undo" size={18} color="#A16B5D" />
                 </TouchableOpacity>
-                <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
+                <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150), marginBottom: RFValue(15) }}>
                     <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', fontFamily: 'times new roman' }}>Lightup.ai</Text>
-                    <Text style={{
+                    <Text style={{ fontSize: RFValue(10), color: '#A16B5D', marginHorizontal: RFValue(20) }}>Unlock your creative potential</Text>
+                    <Text style={{ fontSize: RFValue(8), color: '#FFF', marginHorizontal: RFValue(30) }}>Writing was never been easier!</Text>
+                    {/* <Text style={{
                         color: '#A8A8A8', fontSize: RFValue(12), marginVertical: RFValue(25), alignSelf: 'center',
                         textShadowColor: '#DDFF00', textShadowOffset: { width: -1, height: 1 },
                         textShadowRadius: 10
-                    }}>Unlock your creative potential</Text>
+                    }}>Unlock your creative potential</Text> */}
                 </View>
 
 
@@ -223,7 +248,9 @@ function Home({ navigation }) {
                     </TouchableOpacity>
                 </LinearGradient>
 
-                <Modal
+                <PlanModal showModal={showModal} setShowModal={setShowModal} />
+
+                {/* <Modal
                     visible={showModal}
                     transparent
                     onRequestClose={() => setShowModal(false)}
@@ -248,7 +275,7 @@ function Home({ navigation }) {
                             </LinearGradient>
                         </View>
                     </View>
-                </Modal>
+                </Modal> */}
 
             </ScrollView >
         </ImageBackground >

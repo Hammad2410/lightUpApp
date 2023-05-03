@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput, Platform, ActivityIndicator } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput, Platform, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import CheckBox from '@react-native-community/checkbox';
 import { useDispatch } from 'react-redux';
@@ -76,79 +76,81 @@ function Login({ navigation }) {
     return (
 
         <ImageBackground style={styles.container} source={require('../../assets/landing.png')}>
-            <ScrollView>
-                <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
-                    <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', fontFamily: 'times new roman' }}>Lightup.ai</Text>
-                    <Text style={{ fontSize: RFValue(10), color: '#A16B5D', marginHorizontal: RFValue(20) }}>Unlock your creative potential</Text>
-                    <Text style={{ fontSize: RFValue(8), color: '#FFF', marginHorizontal: RFValue(30) }}>Writing was never been easier!</Text>
-                    <Text style={{ color: '#A16B5D', fontSize: RFValue(12), marginVertical: RFValue(25), textAlign: 'center' }}>Write amazing essays, stories, letters,
-                        applications, emails, speeches, articles, blogposts
-                        and many more in different languages, academic levels
-                        and tones within seconds!</Text>
-                </View>
-
-
-                <View style={{ padding: RFValue(5), marginTop: RFValue(50) }}>
-                    <TextInput
-                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
-                        placeholderTextColor={'#B5B5B5'}
-                        keyboardType={'email-address'}
-                        placeholder={"Email"}
-                        onChangeText={setEmail}
-                    />
-                    <TextInput
-                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
-                        placeholderTextColor={'#B5B5B5'}
-                        secureTextEntry={true}
-                        onChangeText={setPassword}
-                        placeholder={"Password"} />
-
-                    <View style={{ width: '100%', marginVertical: RFValue(5), flexDirection: 'row' }}>
-
-
-                        <TouchableOpacity style={{ flexDirection: 'row', flex: 1 }} onPress={() => setToggleCheckBox(!toggleCheckBox)}>
-                            <CheckBox
-                                disabled={true}
-                                value={toggleCheckBox}
-                                onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                                // tintColors={{ true: '#D97D54', false: "#FFF" }}
-                                style={{ marginHorizontal: Platform.OS == 'ios' ? RFValue(10) : RFValue(20), height: RFValue(15), width: RFValue(15) }}
-                                boxType={'square'}
-                            />
-                            <Text>Remember me</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => onForgetPassword()}>
-                            <Text>Forgot Password?</Text>
-                        </TouchableOpacity>
+            <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'height' : null} keyboardVerticalOffset={RFValue(10)}>
+                <ScrollView>
+                    <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
+                        <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', fontFamily: 'times new roman' }}>Lightup.ai</Text>
+                        <Text style={{ fontSize: RFValue(10), color: '#A16B5D', marginHorizontal: RFValue(20) }}>Unlock your creative potential</Text>
+                        <Text style={{ fontSize: RFValue(8), color: '#FFF', marginHorizontal: RFValue(30) }}>Writing was never been easier!</Text>
+                        <Text style={{ color: '#A16B5D', fontSize: RFValue(12), marginVertical: RFValue(25), textAlign: 'center' }}>Write amazing essays, stories, letters,
+                            applications, emails, speeches, articles, blogposts
+                            and many more in different languages, academic levels
+                            and tones within seconds!</Text>
                     </View>
 
-                    {
-                        loading ?
-                            <ActivityIndicator size={'large'} color={'#628BEC'} />
-                            : <TouchableOpacity style={{ width: '50%', height: RFValue(40), justifyContent: 'center', alignItems: 'center', backgroundColor: '#628BEC', marginVertical: RFValue(20), borderRadius: RFValue(5), alignSelf: 'center' }}
-                                // onPress={() => navigation.navigate("home")}
-                                onPress={onSubmit}
-                            >
-                                <Text
-                                    style={{ color: '#FFF', fontSize: RFValue(14) }}
-                                >
-                                    Submit
-                                </Text>
-                            </TouchableOpacity>
-                    }
 
-                    <TouchableOpacity style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginVertical: RFValue(0), borderRadius: RFValue(5) }}
-                        onPress={() => navigation.navigate("signUp")}
-                    >
-                        <Text
-                            style={{ color: '#FFF', fontSize: RFValue(14) }}
+                    <View style={{ padding: RFValue(5), marginTop: RFValue(50) }}>
+                        <TextInput
+                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25), height: RFValue(40) }}
+                            placeholderTextColor={'#B5B5B5'}
+                            keyboardType={'email-address'}
+                            placeholder={"Email"}
+                            onChangeText={setEmail}
+                        />
+                        <TextInput
+                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25), height: RFValue(40) }}
+                            placeholderTextColor={'#B5B5B5'}
+                            secureTextEntry={true}
+                            onChangeText={setPassword}
+                            placeholder={"Password"} />
+
+                        <View style={{ width: '100%', marginVertical: RFValue(5), flexDirection: 'row' }}>
+
+
+                            <TouchableOpacity style={{ flexDirection: 'row', flex: 1 }} onPress={() => setToggleCheckBox(!toggleCheckBox)}>
+                                <CheckBox
+                                    disabled={true}
+                                    value={toggleCheckBox}
+                                    onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                                    // tintColors={{ true: '#D97D54', false: "#FFF" }}
+                                    style={{ marginHorizontal: Platform.OS == 'ios' ? RFValue(10) : RFValue(20), height: RFValue(15), width: RFValue(15) }}
+                                    boxType={'square'}
+                                />
+                                <Text>Remember me</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => onForgetPassword()}>
+                                <Text>Forgot Password?</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {
+                            loading ?
+                                <ActivityIndicator size={'large'} color={'#628BEC'} />
+                                : <TouchableOpacity style={{ width: '50%', height: RFValue(40), justifyContent: 'center', alignItems: 'center', backgroundColor: '#628BEC', marginVertical: RFValue(20), borderRadius: RFValue(5), alignSelf: 'center' }}
+                                    // onPress={() => navigation.navigate("home")}
+                                    onPress={onSubmit}
+                                >
+                                    <Text
+                                        style={{ color: '#FFF', fontSize: RFValue(14) }}
+                                    >
+                                        Submit
+                                    </Text>
+                                </TouchableOpacity>
+                        }
+
+                        <TouchableOpacity style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginVertical: RFValue(0), borderRadius: RFValue(5) }}
+                            onPress={() => navigation.navigate("signUp")}
                         >
-                            Sign Up
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
+                            <Text
+                                style={{ color: '#FFF', fontSize: RFValue(14) }}
+                            >
+                                Sign Up
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </ImageBackground >
 
     )

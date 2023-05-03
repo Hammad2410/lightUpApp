@@ -74,14 +74,14 @@ function Essay({ navigation }) {
 
                 <View style={{ padding: RFValue(5) }}>
                     <TextInput
-                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
+                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25), height: RFValue(40) }}
                         placeholderTextColor={'#B5B5B5'}
                         onChangeText={(text) => setTopic(text)}
                         placeholder={"Enter Moral of story"} />
 
                     <TouchableOpacity onPress={() => setShowLevelModal(true)}>
                         <TextInput
-                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
+                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25), height: RFValue(40) }}
                             placeholderTextColor={'#B5B5B5'}
                             editable={false}
                             value={level}
@@ -89,7 +89,7 @@ function Essay({ navigation }) {
                     </TouchableOpacity>
 
                     <TextInput
-                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25) }}
+                        style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25), height: RFValue(40) }}
                         // style={{ flex: 1, backgroundColor: '#79839B', color: '#FFF', marginHorizontal: RFValue(10), textAlign: 'center', height: RFValue(40), textAlignVertical: 'center' }}
                         placeholderTextColor={'#B5B5B5'}
                         keyboardType={'numeric'}

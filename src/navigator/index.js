@@ -23,6 +23,7 @@ import TranslateScreen from '../views/Translate';
 import VerifyNumberScreen from '../views/VerifyNumber';
 import ChangePasswordScreen from '../views/ChangePassword';
 import ForgotPasswordScreen from '../views/forgetPassword';
+import Dashboard from './drawerNavigator';
 
 const Stack = createStackNavigator();
 
@@ -36,7 +37,7 @@ export default function App() {
             <Stack.Navigator screenOptions={screenOptions} initialRouteName={'splash'}>
                 <Stack.Screen name='login' component={LoginScreen} />
                 <Stack.Screen name='signUp' component={SignUpScreen} />
-                <Stack.Screen name='home' component={HomeScreen} />
+                <Stack.Screen name='home' component={Dashboard} />
                 <Stack.Screen name='essay' component={EssayScreen} />
                 <Stack.Screen name='story' component={StoryScreen} />
                 <Stack.Screen name='summarize' component={SummarizeScreen} />

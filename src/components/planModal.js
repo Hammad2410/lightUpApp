@@ -15,7 +15,7 @@ const planModal = ({ showModal, setShowModal }) => {
     const [loading, setLoading] = useState(false);
 
     const fetchPaymentSheetParams = async (amount) => {
-        const response = await fetch(`http://192.168.18.126:3000/payments/payment-sheet`, {
+        const response = await fetch(`https://lightupai.com/payments/payment-sheet`, {
             method: 'POST',
             body: JSON.stringify({
                 amount: amount

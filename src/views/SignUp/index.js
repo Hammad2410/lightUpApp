@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import PhoneInput from 'react-native-phone-input';
 import { postCall } from '../../utils/apiCall';
 import md5 from 'md5'
+import PrimaryButton from '../../components/primaryButton';
 
 function SignUp({ navigation }) {
 
@@ -55,28 +56,25 @@ function SignUp({ navigation }) {
 
 
     return (
-        <ImageBackground style={styles.container} source={require('../../assets/landing.png')}>
+        <View style={styles.container} >
             <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'height' : null} keyboardVerticalOffset={RFValue(50)}>
                 <ScrollView>
-                    <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
-                        <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', fontFamily: 'times new roman' }}>Lightup.ai</Text>
-                        <Text style={{ fontSize: RFValue(10), color: '#A16B5D', marginHorizontal: RFValue(20) }}>Unlock your creative potential</Text>
-                        <Text style={{ color: '#A16B5D', fontSize: RFValue(12), marginVertical: RFValue(25), textAlign: 'center' }}>Write amazing essays, stories, letters,
-                            applications, emails, speeches, articles, blogposts
-                            and many more in different languages, academic levels
-                            and tones within seconds!</Text>
+
+                    <View style={styles.logoContainer}>
+                        <Image source={require('../../assets/logo.png')} style={styles.logo} />
                     </View>
 
+
                     <View style={{ padding: RFValue(5) }}>
-                        <Text>Enter your details to sign up</Text>
+                        <Text style={styles.label}>sign up</Text>
                         <TextInput
-                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25), height: RFValue(40) }}
+                            style={styles.TextInput}
                             placeholderTextColor={'#B5B5B5'}
                             onChangeText={setEmail}
                             keyboardType={'email-address'}
                             placeholder={"Email"} />
                         <PhoneInput
-                            style={{ width: '100%', backgroundColor: '#79839B', color: '#FFF', marginVertical: RFValue(5), borderRadius: RFValue(50), paddingHorizontal: RFValue(25), height: RFValue(40) }}
+                            style={styles.TextInput}
                             ref={phoneRef}
                             onPressFlag={() => { }}
                             value={phoneNumber}
@@ -94,20 +92,20 @@ function SignUp({ navigation }) {
                         onChangeText={setLastName}
                         placeholder={"Last Name"} /> */}
 
-                        <View style={{ width: '100%', justifyContent: 'space-between', flexDirection: 'row' }}>
-                            <TextInput
-                                style={{ backgroundColor: '#79839B', color: '#FFF', margin: RFValue(5), flex: 1, marginLeft: RFValue(0), borderRadius: RFValue(50), paddingHorizontal: RFValue(10), height: RFValue(40) }}
-                                placeholderTextColor={'#B5B5B5'}
-                                onChangeText={setPassword}
-                                secureTextEntry={true}
-                                placeholder={"Password"} />
-                            <TextInput
-                                style={{ backgroundColor: '#79839B', color: '#FFF', margin: RFValue(5), flex: 1, marginRight: RFValue(0), borderRadius: RFValue(50), paddingHorizontal: RFValue(10), height: RFValue(40) }}
-                                placeholderTextColor={'#B5B5B5'}
-                                secureTextEntry={true}
-                                onChangeText={setConfirmPassword}
-                                placeholder={"Confirm Password"} />
-                        </View>
+                        {/* <View style={{ width: '100%', justifyContent: 'space-between', flexDirection: 'row' }}> */}
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholderTextColor={'#B5B5B5'}
+                            onChangeText={setPassword}
+                            secureTextEntry={true}
+                            placeholder={"Password"} />
+                        <TextInput
+                            style={styles.TextInput}
+                            placeholderTextColor={'#B5B5B5'}
+                            secureTextEntry={true}
+                            onChangeText={setConfirmPassword}
+                            placeholder={"Confirm Password"} />
+                        {/* </View> */}
 
 
                         <View style={{ width: '100%', marginVertical: RFValue(5), flexDirection: 'row' }}>
@@ -121,11 +119,11 @@ function SignUp({ navigation }) {
                                         disabled={true}
                                         value={toggleCheckBox}
                                         onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                                        // tintColors={{ true: '#D97D54', false: "#FFF" }}
-                                        style={{ marginHorizontal: Platform.OS == 'ios' ? RFValue(10) : RFValue(20), height: RFValue(15), width: RFValue(15) }}
+                                        tintColors={{ true: '#000', false: "#000" }}
+                                        style={styles.checkBox}
                                         boxType={'square'}
                                     />
-                                    <Text>Show Password</Text>
+                                    <Text style={styles.textRememberMe}>Show Password</Text>
                                 </TouchableOpacity>
 
                             </View>
@@ -135,43 +133,43 @@ function SignUp({ navigation }) {
                             loading ?
                                 <ActivityIndicator size={'large'} color={'#628BEC'} />
                                 :
-                                <TouchableOpacity style={{ width: '50%', height: RFValue(40), justifyContent: 'center', alignItems: 'center', backgroundColor: '#628BEC', marginVertical: RFValue(20), borderRadius: RFValue(5), alignSelf: 'center' }}
-                                    // onPress={() => navigation.navigate('verifyNumber')}
-                                    onPress={onSubmit}
-                                >
-                                    <Text
-                                        style={{ color: '#FFF', fontSize: RFValue(14) }}
-                                    >
-                                        Submit
-                                    </Text>
-                                </TouchableOpacity>
+                                <PrimaryButton label={"Submit"} onPress={onSubmit} />
+
                         }
 
-                        <TouchableOpacity style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginVertical: RFValue(0), borderRadius: RFValue(5) }}
-                            onPress={() => navigation.navigate("login")}
-                        >
-                            <Text
-                                style={{ color: '#FFF', fontSize: RFValue(14) }}
-                            >
-                                Already have an account?
-                            </Text>
-                        </TouchableOpacity>
+
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-        </ImageBackground>
+            <View style={{ flex: 1, justifyContent: 'flex-end', paddingVertical: RFValue(20) }}>
+                <TouchableOpacity style={{ width: '100%', justifyContent: 'center', alignItems: 'center', alignSelf: 'flex-end' }}
+                    onPress={() => navigation.navigate("login")}
+                >
+                    <Text
+                        style={styles.textRememberMe}
+                    >
+                        Already have an account?
+                        <Text style={styles.textForgotPassword}> SIGN IN!</Text>
+
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // justifyContent: 'flex-end',
-
+        paddingHorizontal: RFValue(10),
+        backgroundColor: "#FFF"
+    },
+    logoContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: RFValue(75)
     },
     body: {
-        // height: RFValue(400),
-        // backgroundColor: "#563",
         width: '100%'
     },
     textLabel: {
@@ -180,7 +178,40 @@ const styles = StyleSheet.create({
         color: '#000',
         textAlign: 'center',
         marginBottom: RFValue(5)
+    },
+    TextInput: {
+        backgroundColor: "#F6F6F6",
+        height: RFValue(60),
+        width: '100%',
+        borderRadius: RFValue(10),
+        marginVertical: RFValue(5),
+        paddingHorizontal: RFValue(10),
+        fontSize: RFValue(15)
+    },
+    label: {
+        color: '#000',
+        fontSize: RFValue(20),
+        marginVertical: RFValue(5)
+    },
+    logo: {
+        width: RFValue(80),
+        height: RFValue(80),
+        resizeMode: 'contain'
+    },
+    textForgotPassword: {
+        color: '#BFAA94',
+        fontSize: RFValue(13)
+    },
+    textRememberMe: {
+        color: '#000',
+        fontSize: RFValue(13)
+    },
+    checkBox: {
+        marginRight: Platform.OS == 'ios' ? RFValue(10) : RFValue(20),
+        height: RFValue(15),
+        width: RFValue(15)
     }
+
 
 })
 

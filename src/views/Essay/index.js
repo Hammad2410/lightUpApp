@@ -59,8 +59,8 @@ function Essay({ navigation }) {
     return (
         <View style={styles.container} >
             <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'height' : null} keyboardVerticalOffset={RFValue(10)}>
-                <ScrollView contentContainerStyle={{}}>
-                    <Header />
+                <ScrollView keyboardShouldPersistTaps={'always'}>
+                    <Header onPress={() => navigation.goBack()} />
 
                     <ScreenHeading
                         heading={"Lets Write Essay"}
@@ -77,12 +77,12 @@ function Essay({ navigation }) {
                             onChangeText={(text) => setTopic(text)}
                             placeholder={"Enter Topic"} />
 
-                        <TextInput
+                        {/* <TextInput
                             style={styles.textInput}
                             placeholderTextColor={'#B5B5B5'}
                             editable={false}
 
-                            placeholder={"Select Style"} />
+                            placeholder={"Select Style"} /> */}
 
 
                         <TouchableOpacity onPress={() => setShowLevelModal(true)}>
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     textInput: {
         width: '100%',
         backgroundColor: '#F6f6f6',
-        color: '#B7b7b7',
+        color: '#000',
         marginVertical: RFValue(5),
         borderRadius: RFValue(10),
         paddingHorizontal: RFValue(25),

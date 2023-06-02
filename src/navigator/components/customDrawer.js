@@ -14,7 +14,7 @@ function CustomDrawer(props) {
                 <Image source={require('../../assets/logo.png')} style={styles.logo} />
             </View>
             <View style={styles.body}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => props.navigation.toggleDrawer()}>
                     <Image source={require('../../assets/icn_home.png')} style={styles.icon} />
                     <Text style={styles.btnText}>Home</Text>
                 </TouchableOpacity>
@@ -35,7 +35,7 @@ function CustomDrawer(props) {
 
             </View>
             <View style={styles.footer}>
-                <TouchableOpacity style={[styles.button, { alignSelf: 'flex-end', }]}>
+                <TouchableOpacity style={[styles.button, { alignSelf: 'flex-end', }]} onPress={() => props.navigation.navigate("login")}>
                     <Image source={require('../../assets/icn_logout.png')} style={styles.icon} />
                     <Text style={styles.btnText}>Logout</Text>
                 </TouchableOpacity>

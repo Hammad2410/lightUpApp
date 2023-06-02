@@ -37,7 +37,7 @@ function Home({ navigation }) {
     return (
         <View style={styles.container} source={require('../../assets/landing.png')}>
             <View style={styles.body}>
-                <Header onPress={() => { navigation.toggleDrawer() }} />
+                <Header onPress={() => { navigation.toggleDrawer() }} isHome />
 
 
             </View >

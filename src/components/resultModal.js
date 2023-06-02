@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput, Alert, ActivityIndicator, Modal, Dimensions } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput, Alert, ActivityIndicator, Modal, Dimensions, Share } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
+import Clipboard from '@react-native-clipboard/clipboard';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Header from './header';
 import ScreenHeading from './screenHeading';
@@ -50,15 +51,32 @@ function resultModal({ showModal, setShowModal, result, topic }) {
                     <Text style={{ color: '#000' }}>{result}</Text>
                 </ScrollView>
                 <View style={{ position: 'absolute', bottom: RFValue(0), width: '100%', padding: RFValue(10), justifyContent: 'space-around', flexDirection: 'row', backgroundColor: '#5B5A62', borderBottomLeftRadius: RFValue(10), borderBottomRightRadius: RFValue(10) }}>
-                    <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setShowModal(false)}>
+                    <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => {
+                        Clipboard.setString(result);
+
+                        // alert("Result Copied")
+
+
+                    }}>
                         <Icon name="copy" size={18} color="#FFF" />
                         <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>Copy</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setShowModal(false)}>
+                    {/* <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setShowModal(false)}>
                         <Icon name="save" size={18} color="#FFF" />
                         <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>Save</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setShowModal(false)}>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity style={{ flexDirection: 'row' }}
+                        onPress={
+
+                            async () => {
+                                //  props.navigation.navigate('InviteFriends')
+                                let response = await Share.share({
+                                    message: result
+                                })
+                                // setShowModal(false)
+                            }
+
+                        }>
                         <Icon name="share" size={18} color="#FFF" />
                         <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>share</Text>
                     </TouchableOpacity>
@@ -67,7 +85,7 @@ function resultModal({ showModal, setShowModal, result, topic }) {
 
 
 
-            <TouchableOpacity style={{ position: 'absolute', top: RFValue(10), left: RFValue(10), flexDirection: 'row' }} onPress={() => setShowModal(false)}>
+            <TouchableOpacity style={{ position: 'absolute', top: RFValue(20), left: RFValue(10), flexDirection: 'row' }} onPress={() => setShowModal(false)}>
                 <Icon name="close" size={18} color="#000" />
                 <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>close</Text>
             </TouchableOpacity>

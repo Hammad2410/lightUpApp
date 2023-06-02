@@ -56,12 +56,12 @@ function Question({ navigation }) {
 
     return (
         <View style={styles.container} >
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps={'always'}>
                 {/* <TouchableOpacity style={{ position: 'absolute', top: RFValue(10), left: RFValue(10), flexDirection: 'row' }} onPress={() => navigation.goBack()}>
                     <Icon name="chevron-left" size={18} color="#FFF" />
                     <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>Back</Text>
                 </TouchableOpacity> */}
-                <Header />
+                <Header onPress={() => navigation.goBack()} />
 
                 <ScreenHeading
                     heading='Lets Translate'
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     textInput: {
         width: '100%',
         backgroundColor: '#F6f6f6',
-        color: '#B7b7b7',
+        color: '#000',
         marginVertical: RFValue(5),
         borderRadius: RFValue(10),
         paddingHorizontal: RFValue(25),

@@ -5,14 +5,23 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-const Header = ({ onPress = () => { } }) => {
+const Header = ({ onPress = () => { }, isHome = false }) => {
     return (
         <View style={styles.container}>
+
             <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
                 {/* <Icon name="home" size={RFValue(20)} color="#707070" /> */}
-                <Image source={require('../assets/icn_menu.png')} style={{ width: RFValue(30), height: RFValue(30), resizeMode: 'contain' }} />
 
+                {
+                    isHome ?
+
+                        <Image source={require('../assets/icn_menu.png')} style={{ width: RFValue(30), height: RFValue(30), resizeMode: 'contain' }} />
+                        : <Icon name="chevron-left" size={20} color="#000" />
+                }
             </TouchableOpacity>
+
+
+
 
             <Image source={require('../assets/logo.png')} style={styles.logo} />
             <TouchableOpacity style={[styles.buttonContainer, styles.buttonBorder]}>

@@ -8,6 +8,7 @@ import md5 from 'md5';
 import { ScrollView } from 'react-native-gesture-handler';
 import { loggedIn } from '../../Redux/Actions/activity';
 import PrimaryButton from '../../components/primaryButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Login({ navigation }) {
 
@@ -15,6 +16,24 @@ function Login({ navigation }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+
+    useEffect(async () => {
+        try {
+            let username = await AsyncStorage.getItem('username', null);
+            let password = await AsyncStorage.getItem('password', null);
+
+            if (username && password) {
+                setPassword(password);
+                setEmail(username);
+                setToggleCheckBox(true);
+            }
+
+        }
+        catch (error) {
+            console.log("Error: ", error.message)
+        }
+    }, [])
+
 
     const dispatch = useDispatch()
 
@@ -30,6 +49,17 @@ function Login({ navigation }) {
         const cbSuccess = (data) => {
             setLoading(false)
             console.log('Response: ', data)
+
+            if (toggleCheckBox) {
+                AsyncStorage.setItem('password', password);
+                AsyncStorage.setItem('username', email);
+            }
+            else {
+                AsyncStorage.setItem('password', '');
+                AsyncStorage.setItem('username', '');
+            }
+
+
             dispatch(loggedIn(data.token))
 
             navigation.navigate("home")
@@ -92,12 +122,14 @@ function Login({ navigation }) {
                             placeholderTextColor={'#B5B5B5'}
                             keyboardType={'email-address'}
                             placeholder={"Email"}
+                            value={email}
                             onChangeText={setEmail}
                         />
                         <TextInput
                             style={styles.TextInput}
                             placeholderTextColor={'#B5B5B5'}
                             secureTextEntry={true}
+                            value={password}
                             onChangeText={setPassword}
                             placeholder={"Password"} />
 

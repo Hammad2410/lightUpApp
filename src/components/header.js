@@ -14,7 +14,6 @@ const Header = ({ onPress = () => { }, isHome = false }) => {
 
                 {
                     isHome ?
-
                         <Image source={require('../assets/icn_menu.png')} style={{ width: RFValue(30), height: RFValue(30), resizeMode: 'contain' }} />
                         : <Icon name="chevron-left" size={20} color="#000" />
                 }

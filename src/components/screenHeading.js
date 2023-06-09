@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
     logo: {
         margin: RFValue(5),
         height: RFValue(40),
-        width: RFValue(40)
+        width: RFValue(40),
+        resizeMode: 'contain'
     }
 
 })

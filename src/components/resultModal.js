@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput, Alert, ActivityIndicator, Modal, Dimensions, Share } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, ImageBackground, Text, Image, TextInput, Alert, ActivityIndicator, Modal, Dimensions, Share, StatusBar, Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -85,7 +85,7 @@ function resultModal({ showModal, setShowModal, result, topic }) {
 
 
 
-            <TouchableOpacity style={{ position: 'absolute', top: RFValue(20), left: RFValue(10), flexDirection: 'row' }} onPress={() => setShowModal(false)}>
+            <TouchableOpacity style={{ position: 'absolute', top: Platform.OS == 'ios' ? StatusBar.currentHeight + RFValue(20) : RFValue(20), left: RFValue(10), flexDirection: 'row' }} onPress={() => setShowModal(false)}>
                 <Icon name="close" size={18} color="#000" />
                 <Text style={{ color: '#FFF', marginLeft: RFValue(5) }}>close</Text>
             </TouchableOpacity>

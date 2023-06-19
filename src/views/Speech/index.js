@@ -78,14 +78,18 @@ function Essay({ navigation }) {
                         onChangeText={(text) => setTopic(text)}
                         placeholder={"Speech"} />
 
-                    <TouchableOpacity onPress={() => setShowLevelModal(true)}>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholderTextColor={'#B5B5B5'}
-                            editable={false}
-                            value={level}
-                            placeholder={"Academic Level"} />
+                    <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => setShowLevelModal(true)}>
+                        <Text
+                            style={[styles.textInput, { color: level == '' ? "#B5B5B5" : "#000" }]}
+                        // placeholderTextColor={'#B5B5B5'}
+                        // editable={false}
+                        // value={level}
+                        //placeholder={"Academic Level"} 
+                        >
+                            {level == '' ? "Academic Level" : level}
+                        </Text>
                     </TouchableOpacity>
+
 
                     <TextInput
                         style={styles.textInput}
@@ -199,7 +203,8 @@ const styles = StyleSheet.create({
         borderRadius: RFValue(10),
         paddingHorizontal: RFValue(25),
         height: RFValue(40),
-        fontSize: RFValue(15)
+        fontSize: RFValue(15),
+        textAlignVertical: 'center'
     }
 
 })

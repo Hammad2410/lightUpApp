@@ -98,14 +98,18 @@ function Question({ navigation }) {
                         onChangeText={(text) => setQuestion(text)}
                         placeholder={"Enter Text"} />
 
-                    <TouchableOpacity onPress={() => setShowLanguageModal(true)}>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholderTextColor={'#B5B5B5'}
-                            editable={false}
-                            value={language}
-                            placeholder={"Language"} />
+                    <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => setShowLanguageModal(true)}>
+                        <Text
+                            style={[styles.textInput, { color: language == '' ? "#B5B5B5" : "#000" }]}
+                        // placeholderTextColor={'#B5B5B5'}
+                        // editable={false}
+                        // value={level}
+                        //placeholder={"Academic Level"} 
+                        >
+                            {language == '' ? "Language" : language}
+                        </Text>
                     </TouchableOpacity>
+
 
 
 
@@ -212,7 +216,8 @@ const styles = StyleSheet.create({
         borderRadius: RFValue(10),
         paddingHorizontal: RFValue(25),
         height: RFValue(40),
-        fontSize: RFValue(15)
+        fontSize: RFValue(15),
+        textAlignVertical: 'center'
     }
 
 })

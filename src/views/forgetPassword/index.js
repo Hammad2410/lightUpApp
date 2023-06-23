@@ -6,17 +6,18 @@ import { ScrollView } from 'react-native-gesture-handler';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import { postCall } from '../../utils/apiCall';
 import md5 from 'md5'
+import PrimaryButton from '../../components/primaryButton';
 
-function ForgotPassword({ navigation, route }) {
-
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+function SignUp({ navigation, route }) {
 
 
     const [loading, setLoading] = useState(false)
     const [code, setCode] = useState('');
 
 
+
     const onSubmit = () => {
+
 
         setLoading(true)
         const params = {
@@ -31,8 +32,7 @@ function ForgotPassword({ navigation, route }) {
             setLoading(false)
             console.log('Response: ', data)
 
-            navigation.navigate('changePassword', { email: route.params.email })
-
+            navigation.navigate('changePassword')
         }
 
         const cbFailure = (error) => {
@@ -46,26 +46,28 @@ function ForgotPassword({ navigation, route }) {
 
 
     return (
-        <ImageBackground style={styles.container} source={require('../../assets/landing.png')}>
+        <View style={styles.container} >
             <ScrollView>
-                <View style={{ padding: RFValue(20), paddingVertical: RFValue(5), marginTop: RFValue(150) }}>
-                    <Text style={{ fontSize: RFValue(34), color: '#FFF', fontWeight: 'bold', fontFamily: 'times new roman' }}>Lightup.ai</Text>
-                    <Text style={{ color: '#848484', fontSize: RFValue(10), marginVertical: RFValue(25), }}>Write amazing essays, stories, letters,
-                        applications, emails, speeches, articles, blogposts
-                        and many more in different languages, academic levels
-                        and tones within seconds!</Text>
+                <View style={styles.logoContainer}>
+                    <Image source={require('../../assets/logo.png')} style={styles.logo} />
                 </View>
 
                 <View style={{ padding: RFValue(5) }}>
-                    <Text>Enter 6 verification code sent to your number</Text>
+                    <Text style={styles.heading}>6 Digit Code</Text>
+                    <Text style={styles.subheading}>Please enter the code send to you phone number</Text>
+                    {/* <Text style={styles.subheading}>{route.params.phone}</Text> */}
                     <View style={{ alignSelf: 'center', marginBottom: RFValue(75), marginTop: RFValue(25) }}>
                         <SmoothPinCodeInput
                             cellStyle={{
-                                borderBottomWidth: 2,
-                                borderColor: '#79839B',
+
+                                borderColor: '#F6F3F0',
+                                backgroundColor: '#F6F3F0',
+                                borderRadius: RFValue(5)
                             }}
                             cellStyleFocused={{
-                                borderColor: '#79839B',
+                                borderColor: '#D7CABD',
+                                backgroundColor: '#D7CABD',
+                                borderRadius: RFValue(5)
                             }}
                             value={code}
                             codeLength={6}
@@ -75,42 +77,46 @@ function ForgotPassword({ navigation, route }) {
                     </View>
 
 
+
+
                     {
                         loading ?
                             <ActivityIndicator size={'large'} color={'#628BEC'} />
                             :
-                            <TouchableOpacity style={{ width: '50%', height: RFValue(40), justifyContent: 'center', alignItems: 'center', backgroundColor: '#628BEC', marginVertical: RFValue(20), borderRadius: RFValue(5), alignSelf: 'center' }}
-                                // onPress={() => navigation.navigate('changePassword')}
-                                onPress={() => onSubmit()}
-                            >
-                                <Text
-                                    style={{ color: '#FFF', fontSize: RFValue(14) }}
-                                >
-                                    Submit
-                                </Text>
-                            </TouchableOpacity>
+                            <PrimaryButton onPress={onSubmit} label={'Submit'} />
                     }
-
-                    {/* <TouchableOpacity style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginVertical: RFValue(0), borderRadius: RFValue(5) }}
-                        onPress={() => navigation.navigate("login")}
-                    >
-                        <Text
-                            style={{ color: '#FFF', fontSize: RFValue(14) }}
-                        >
-                            Already have an account?
-                        </Text>
-                    </TouchableOpacity> */}
                 </View>
             </ScrollView>
-        </ImageBackground>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // justifyContent: 'flex-end',
-
+        paddingHorizontal: RFValue(10),
+        backgroundColor: "#FFF"
+    },
+    logoContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: RFValue(75)
+    },
+    logo: {
+        width: RFValue(80),
+        height: RFValue(80),
+        resizeMode: 'contain'
+    },
+    heading: {
+        fontSize: RFValue(27),
+        color: "#000",
+        textAlign: 'center'
+    },
+    subheading: {
+        fontSize: RFValue(12),
+        color: "#000",
+        textAlign: 'center',
+        marginVertical: RFValue(5)
     },
     body: {
         // height: RFValue(400),
@@ -127,4 +133,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default ForgotPassword
+export default SignUp

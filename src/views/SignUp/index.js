@@ -38,7 +38,7 @@ function SignUp({ navigation }) {
                 setLoading(false)
                 console.log('Response: ', data)
 
-                navigation.navigate('verifyNumber', { email: email })
+                navigation.navigate('verifyNumber', { email: email, phone: phoneNumber })
 
             }
 
@@ -75,9 +75,12 @@ function SignUp({ navigation }) {
                             placeholder={"Email"} />
                         <PhoneInput
                             style={styles.TextInput}
+                            textStyle={{ color: '#000', fontSize: RFValue(15) }}
                             ref={phoneRef}
                             onPressFlag={() => { }}
                             value={phoneNumber}
+                            initialCountry={'pk'}
+                            initialValue={"92"}
                             onChangePhoneNumber={setPhoneNumber}
                         />
                         {/* <TextInput
@@ -186,7 +189,8 @@ const styles = StyleSheet.create({
         borderRadius: RFValue(10),
         marginVertical: RFValue(5),
         paddingHorizontal: RFValue(10),
-        fontSize: RFValue(15)
+        fontSize: RFValue(15),
+        color: '#000'
     },
     label: {
         color: '#000',

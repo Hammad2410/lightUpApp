@@ -214,7 +214,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: RFValue(25),
         height: RFValue(40),
         fontSize: RFValue(15),
-        textAlignVertical: 'center'
+        textAlignVertical: 'center',
+        alignItems: "center"
         // backgroundColor: 'red'
     }
 

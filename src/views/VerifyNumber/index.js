@@ -55,7 +55,7 @@ function SignUp({ navigation, route }) {
                 <View style={{ padding: RFValue(5) }}>
                     <Text style={styles.heading}>6 Digit Code</Text>
                     <Text style={styles.subheading}>Please enter the code send to</Text>
-                    <Text style={styles.subheading}>abc@gmail.com</Text>
+                    <Text style={styles.subheading}>{route.params.phone}</Text>
                     <View style={{ alignSelf: 'center', marginBottom: RFValue(75), marginTop: RFValue(25) }}>
                         <SmoothPinCodeInput
                             cellStyle={{

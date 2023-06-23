@@ -115,7 +115,7 @@ function Login({ navigation }) {
                         <Image source={require('../../assets/logo.png')} style={styles.logo} />
                     </View>
 
-                    <View style={{ padding: RFValue(5), marginTop: RFValue(50) }}>
+                    <View style={{ padding: RFValue(10), marginTop: RFValue(50) }}>
                         <Text style={styles.label}>Login</Text>
                         <TextInput
                             style={styles.TextInput}
